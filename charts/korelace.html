@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Korelace ≠ kauzalita — Věda a manipulace</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="nav"></div>
+
+<header class="chart-page-header">
+  <div class="chart-page-header-inner">
+    <a class="chart-page-back" href="../index.html">← Zpět na přehled</a>
+    <p class="chart-page-kicker">Technika 04 · Korelace ≠ kauzalita</p>
+    <h1>CO₂ a teplota: r = 0,94 — co to doopravdy říká?</h1>
+  </div>
+</header>
+
+<div class="container-wide">
+<div class="chart-split">
+
+  <!-- ── LEVÁ: GRAF ──────────────────────────────────────── -->
+  <div class="chart-main">
+
+    <div class="switcher">
+      <button class="sw-btn bad active" id="btnScatter" onclick="setMode('scatter')">Scatter plot (r = 0,94)</button>
+      <button class="sw-btn bad" id="btnDual"    onclick="setMode('dual')">Souběžný vývoj</button>
+    </div>
+
+    <div class="verdict bad" id="verdict">
+      <span>Pearsonovo r = 0,94</span> — silná korelace, vizuálně přesvědčivá. Co z toho plyne?
+    </div>
+
+    <div class="legend-row" id="legend">
+      <div class="legend-item">
+        <svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="#8B5CF6" opacity=".8"/></svg>
+        body zbarveny rokem (fialová = 1960, žlutá = 2020)
+      </div>
+    </div>
+
+    <div class="canvas-wrap" style="height:340px">
+      <canvas id="chart" role="img" aria-label="Scatter plot korelace CO2 emisí a teplotní anomálie 1960-2022"></canvas>
+    </div>
+    <p class="canvas-caption" id="caption">
+      Scatter plot: CO₂ (Gt/rok) vs. teplotní anomálie (°C) · Pearsonovo r = 0,94 · Data 1960–2022
+    </p>
+
+    <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--line)">
+      <p style="font-size:12px;color:var(--ink-mute);line-height:1.7">
+        <strong style="color:var(--ink)">Zdroj dat:</strong>
+        GCAG / NOAA (CC0) +
+        OWID / Global Carbon Project (CC BY) ·
+        <a href="https://github.com/datasets/global-temp" target="_blank" rel="noopener">github.com/datasets/global-temp</a> ·
+        <a href="https://github.com/owid/co2-data" target="_blank" rel="noopener">github.com/owid/co2-data</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ── PRAVÁ: VYSVĚTLENÍ ──────────────────────────────── -->
+  <aside class="chart-sidebar">
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Co jsou to data</div>
+      <p class="sidebar-text">
+        Kombinace dvou datových sad: globální teplotní anomálie GCAG/NOAA a světové emise CO₂
+        OWID/Global Carbon Project za roky 1960–2022.
+        Pearsonovo korelační koeficient r = 0,94 je mimořádně silná pozitivní korelace.
+      </p>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Logická chyba — dezinformátoři ji obracejí oběma směry</div>
+      <p class="sidebar-text">
+        <strong>Verze A (falešné potvrzení):</strong> „Graf ukazuje, že CO₂ způsobuje oteplení!"
+        Korelace sama o sobě kauzalitu nedokazuje — obě veličiny mohou sdílet společnou příčinu,
+        nebo korelovat náhodou.
+      </p>
+      <p class="sidebar-text" style="margin-top:.75rem">
+        <strong>Verze B (falešné zpochybnění):</strong> „Korelace neznamená příčinu, takže CO₂
+        oteplení nezpůsobuje!" Tato korelace je vědecky reálná a fyzikálně vysvětlená.
+        Kauzalitu prokazují fyzikální modely, laboratorní měření absorpce záření a paleoklimatologie —
+        ne samotný scatter plot.
+      </p>
+    </div>
+
+    <div class="info-box warn">
+      <p>
+        <strong>Klasický příklad:</strong> počet utopení koreluje s prodejem zmrzliny (r ≈ 0,9).
+        Příčinou je léto — sdílená třetí proměnná. Korelace bez mechanismu nestačí.
+      </p>
+    </div>
+
+    <div class="sidebar-section" style="margin-top:1.5rem">
+      <div class="sidebar-label">Jak se prokazuje kauzalita</div>
+      <ul style="font-family:var(--f-text);font-size:.875rem;line-height:1.8;color:var(--ink-soft);padding-left:1.25rem;margin-top:.25rem">
+        <li><strong>Fyzikální mechanismus:</strong> CO₂ absorbuje infračervené záření (prokázáno laboratorno od 1850s)</li>
+        <li><strong>Izotopová analýza:</strong> nárůst ¹²C / pokles ¹³C v atmosféře ukazuje na fosilní zdroj</li>
+        <li><strong>Paleoklimatologie:</strong> korelace CO₂ a teploty v ledových vrtech za 800 000 let</li>
+        <li><strong>Klimatické modely:</strong> bez nárůstu CO₂ nemodelují pozorovaný oteplovací trend</li>
+      </ul>
+    </div>
+
+    <div class="info-box" style="margin-top:1rem">
+      <p>
+        <strong>Přepněte pohled:</strong> „Souběžný vývoj" ukáže obě veličiny na dvou osách —
+        vizuálně stejně přesvědčivé jako scatter plot, vědecky stále jen korelace.
+      </p>
+    </div>
+
+  </aside>
+</div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>
+      Data: <a href="https://github.com/datasets/global-temp" target="_blank" rel="noopener">GCAG / NOAA</a> (CC0) ·
+      <a href="https://github.com/owid/co2-data" target="_blank" rel="noopener">OWID / GCP</a> (CC BY) ·
+      Přírodovědecká fakulta JU · 2026
+    </p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('nav').innerHTML = `
+<nav class="site-nav">
+  <span class="logo">Věda &amp; <span>Manipulace</span></span>
+  <div class="nav-links">
+    <a href="../index.html">Přehled</a>
+    <a href="osa-y.html">Osa Y</a>
+    <a href="hiat.html">Selektivní výběr</a>
+    <a href="kontext.html">Chybějící kontext</a>
+    <a href="korelace.html" class="active">Korelace</a>
+  </div>
+</nav>`;
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="../js/data.js"></script>
+<script>
+const RED = '#C0392B', TEAL = '#1A6B5C';
+let chart;
+
+// Sdílená průnikná data
+const commonYears = DATA.tempYears.filter(y => DATA.co2Years.includes(y) && y <= 2022);
+const tVals = commonYears.map(y => DATA.tempVals[DATA.tempYears.indexOf(y)]);
+const cVals = commonYears.map(y => DATA.co2Total[DATA.co2Years.indexOf(y)]);
+
+// Pearsonovo r
+function pearson(xs, ys) {
+  const n = xs.length, mx = xs.reduce((a,b)=>a+b)/n, my = ys.reduce((a,b)=>a+b)/n;
+  let num=0, dx=0, dy=0;
+  for(let i=0;i<n;i++){num+=(xs[i]-mx)*(ys[i]-my);dx+=(xs[i]-mx)**2;dy+=(ys[i]-my)**2;}
+  return num/Math.sqrt(dx*dy);
+}
+const r = pearson(cVals, tVals);
+
+// Barvy bodů podle roku (fialová→žlutá)
+function yearColor(y) {
+  const t = (y - commonYears[0]) / (commonYears[commonYears.length-1] - commonYears[0]);
+  const r = Math.round(139 + t*(230-139));
+  const g = Math.round(92  + t*(180-92));
+  const b = Math.round(246 + t*(30-246));
+  return `rgba(${r},${g},${b},0.85)`;
+}
+
+function buildScatter() {
+  if (chart) chart.destroy();
+  const reg = DATA.linreg(cVals, tVals);
+  const minC = Math.min(...cVals), maxC = Math.max(...cVals);
+  const trendData = [
+    { x: minC, y: reg.slope * minC + reg.intercept },
+    { x: maxC, y: reg.slope * maxC + reg.intercept }
+  ];
+
+  chart = new Chart(document.getElementById('chart'), {
+    type: 'scatter',
+    data: {
+      datasets: [
+        {
+          label: 'Rok',
+          data: commonYears.map((y,i) => ({ x: cVals[i], y: tVals[i], year: y })),
+          backgroundColor: commonYears.map(yearColor),
+          pointRadius: 5.5, pointHoverRadius: 7
+        },
+        {
+          label: 'Regresní přímka',
+          data: trendData,
+          type: 'line',
+          borderColor: 'rgba(80,80,80,0.5)',
+          borderDash: [6,4], borderWidth: 1.5,
+          pointRadius: 0, fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          filter: item => item.datasetIndex === 0,
+          callbacks: {
+            label: ctx => {
+              const d = ctx.raw;
+              return [`Rok: ${d.year}`, `CO₂: ${d.x.toFixed(1)} Gt/rok`, `Teplota: ${d.y >= 0 ? '+' : ''}${d.y.toFixed(3)} °C`];
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: 'CO₂ emise světové (Gt/rok)', color: '#8896A4', font: { size: 11 } },
+          ticks: { color: '#8896A4' }, grid: { color: 'rgba(0,0,0,0.06)' }
+        },
+        y: {
+          title: { display: true, text: 'Teplotní anomálie (°C)', color: '#8896A4', font: { size: 11 } },
+          ticks: { color: '#8896A4', callback: v => (v>=0?'+':'')+v.toFixed(2)+'°' },
+          grid: { color: 'rgba(0,0,0,0.06)' }
+        }
+      }
+    }
+  });
+}
+
+function buildDual() {
+  if (chart) chart.destroy();
+  chart = new Chart(document.getElementById('chart'), {
+    type: 'line',
+    data: {
+      labels: commonYears,
+      datasets: [
+        {
+          label: 'Teplota (°C)',
+          data: tVals,
+          borderColor: RED, backgroundColor: 'rgba(192,57,43,0.08)',
+          fill: true, tension: 0.3, borderWidth: 2.5, pointRadius: 0,
+          yAxisID: 'y'
+        },
+        {
+          label: 'CO₂ (Gt/rok)',
+          data: cVals,
+          borderColor: '#3266ad', backgroundColor: 'transparent',
+          borderDash: [6,3], tension: 0.3, borderWidth: 2,
+          pointRadius: 0, fill: false,
+          yAxisID: 'y1'
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          mode: 'index', intersect: false,
+          callbacks: {
+            label: ctx => ctx.datasetIndex === 0
+              ? `Teplota: ${(ctx.parsed.y>=0?'+':'')+ctx.parsed.y.toFixed(3)} °C`
+              : `CO₂: ${ctx.parsed.y.toFixed(1)} Gt/rok`
+          }
+        }
+      },
+      scales: {
+        y:  { ticks:{color:RED,  callback:v=>(v>=0?'+':'')+v.toFixed(1)+'°'}, grid:{color:'rgba(0,0,0,0.06)'}, title:{display:true,text:'Teplota (°C)',color:RED,font:{size:11}} },
+        y1: { position:'right', ticks:{color:'#3266ad', callback:v=>v.toFixed(0)+' Gt'}, grid:{display:false}, title:{display:true,text:'CO₂ (Gt/rok)',color:'#3266ad',font:{size:11}} },
+        x:  { ticks:{color:'#8896A4',maxTicksLimit:12,maxRotation:45}, grid:{display:false} }
+      }
+    }
+  });
+}
+
+function setMode(mode) {
+  document.getElementById('btnScatter').className = 'sw-btn bad' + (mode==='scatter' ? ' active' : '');
+  document.getElementById('btnDual').className    = 'sw-btn bad' + (mode==='dual'    ? ' active' : '');
+
+  const leg = document.getElementById('legend');
+  if (mode === 'scatter') {
+    leg.innerHTML = `<div class="legend-item"><svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="#8B5CF6" opacity=".8"/></svg> body zbarveny rokem (fialová = 1960, žlutá = 2020)</div>`;
+    document.getElementById('verdict').innerHTML = `<span>Pearsonovo r = ${r.toFixed(3)}</span> — silná korelace, vizuálně přesvědčivá. Co z toho plyne?`;
+    document.getElementById('caption').textContent = `Scatter plot: CO₂ (Gt/rok) vs. teplotní anomálie (°C) · Pearsonovo r = ${r.toFixed(3)} · Data 1960–2022 · každý bod = jeden rok`;
+    buildScatter();
+  } else {
+    leg.innerHTML = `
+      <div class="legend-item"><div class="legend-swatch" style="background:${RED}"></div>Teplota (°C) — levá osa</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#3266ad"></div>CO₂ (Gt/rok) — pravá osa</div>`;
+    document.getElementById('verdict').innerHTML = `<span>Souběžný vývoj 1960–2022</span> — vizuálně stejně přesvědčivý, vědecky stále jen korelace`;
+    document.getElementById('caption').textContent = 'Teplota (červená, levá osa) a CO₂ emise (modrá, pravá osa) 1960–2022 · Obě osy jsou nastaveny nezávisle — to je samo o sobě designová volba.';
+    buildDual();
+  }
+}
+
+buildScatter();
+</script>
+</body>
+</html>

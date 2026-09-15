@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oříznutá osa Y — Věda a manipulace</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="nav"></div>
+
+<header class="chart-page-header">
+  <div class="chart-page-header-inner">
+    <a class="chart-page-back" href="../index.html">← Zpět na přehled</a>
+    <p class="chart-page-kicker">Technika 01 · Oříznutá osa Y</p>
+    <h1>Globální teploty: jak osa mění příběh</h1>
+  </div>
+</header>
+
+<div class="container-wide">
+<div class="chart-split">
+
+  <!-- ── LEVÁ: GRAF ────────────────────────────────────── -->
+  <div class="chart-main">
+
+    <div class="switcher">
+      <button class="sw-btn bad active" id="btnBad" onclick="setMode('bad')">Manipulovaná verze</button>
+      <button class="sw-btn good" id="btnGood" onclick="setMode('good')">Správná verze</button>
+    </div>
+
+    <div class="verdict bad" id="verdict">
+      <span>⚠</span> Osa Y začíná na 0,5 °C — zobrazeno jen posledních 14 let
+    </div>
+
+    <div class="legend-row">
+      <div class="legend-item"><div class="legend-swatch" style="background:#C0392B"></div>Anomálie &gt; 0 °C (teplejší než průměr)</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#2E6DA4"></div>Anomálie &lt; 0 °C (chladnější než průměr)</div>
+    </div>
+
+    <div class="canvas-wrap">
+      <canvas id="chart" role="img" aria-label="Sloupcový graf globálních teplotních anomálií GCAG/NOAA"></canvas>
+    </div>
+    <p class="canvas-caption" id="caption">
+      Zobrazeno: 2010–2023 · Osa Y: 0,50–1,30 °C · Vizuálně dramatické výkyvy jsou výsledkem oříznuté osy.
+    </p>
+
+    <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--line)">
+      <p style="font-size:12px;color:var(--ink-mute);line-height:1.7">
+        <strong style="color:var(--ink)">Zdroj dat:</strong>
+        GCAG (Global Climate at a Glance) / NOAA ·
+        <a href="https://github.com/datasets/global-temp" target="_blank" rel="noopener">github.com/datasets/global-temp</a> ·
+        Licence CC0 · Roční průměry, odchylka od průměru 1951–1980.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── PRAVÁ: VYSVĚTLENÍ ──────────────────────────────── -->
+  <aside class="chart-sidebar">
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Co jsou to data</div>
+      <p class="sidebar-text">
+        <strong>Globální teplotní anomálie</strong> je odchylka průměrné roční teploty od referenčního průměru
+        (zde 1951–1980). Hodnota –0,1 °C znamená, že rok byl o jednu desetinu stupně chladnější než průměr
+        daného referenčního období. Hodnota +1,1 °C (rok 2023) znamená, že byl o 1,1 °C teplejší.
+      </p>
+      <p class="sidebar-text" style="margin-top:.75rem">
+        Data pochází ze sítě pozemních meteorologických stanic a lodních měření.
+        NOAA je vládní vědecká agentura USA; datová sada je volně dostupná (CC0).
+      </p>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Technika manipulace</div>
+      <p class="sidebar-text">
+        <strong>Oříznutá osa Y</strong>: osa nezačíná od nuly, ale od hodnoty 0,5 °C.
+        Vizuálně pak sloupce „stoupají od podlahy grafu" — malá absolutní změna (0,1 °C)
+        vypadá stejně velká jako výkyv, který by na správné ose byl sotva viditelný.
+      </p>
+      <p class="sidebar-text" style="margin-top:.75rem">
+        Navíc manipulovaná verze zobrazuje pouze roky 2010–2023 —
+        chybí historický kontext let s negativními anomáliemi (do 80. let).
+      </p>
+    </div>
+
+    <div class="info-box warn">
+      <p>
+        <strong>Proč to funguje?</strong> Mozek porovnává výšku sloupců, ne jejich absolutní hodnotu.
+        Dvakrát vyšší sloupec = dvakrát větší změna — ačkoli rozdíl může být jen 0,05 °C.
+      </p>
+    </div>
+
+    <div class="sidebar-section" style="margin-top:1.5rem">
+      <div class="sidebar-label">Na co se dívat</div>
+      <p class="sidebar-text">Přepněte na <strong>Správnou verzi</strong>:</p>
+      <ul style="font-family:var(--f-text);font-size:.875rem;line-height:1.8;color:var(--ink-soft);padding-left:1.25rem;margin-top:.5rem">
+        <li>Osa Y od –0,65 °C — modrá záporná anomálie ze 60.–80. let je viditelná</li>
+        <li>Rozsah 1960–2023 ukazuje celý dlouhodobý trend</li>
+        <li>Absolutní změna 1,2 °C za 63 let je reálně zřejmá, ale nepůsobí jako „katastrofa z ničeho"</li>
+      </ul>
+    </div>
+
+    <div class="info-box" style="margin-top:1rem">
+      <p>
+        <strong>Pravidlo:</strong> osa Y by měla začínat od přirozené nuly domény nebo od hodnoty, která dává
+        fyzikální smysl. Pro teplotní anomálie je přirozené zobrazovat záporné i kladné hodnoty.
+      </p>
+    </div>
+
+  </aside>
+</div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>
+      Data: <a href="https://github.com/datasets/global-temp" target="_blank" rel="noopener">GCAG / NOAA</a> (CC0) ·
+      Přírodovědecká fakulta JU · Materiál pro vzdělávací účely · 2026
+    </p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('nav').innerHTML = `
+<nav class="site-nav">
+  <span class="logo">Věda &amp; <span>Manipulace</span></span>
+  <div class="nav-links">
+    <a href="../index.html">Přehled</a>
+    <a href="osa-y.html" class="active">Osa Y</a>
+    <a href="hiat.html">Selektivní výběr</a>
+    <a href="kontext.html">Chybějící kontext</a>
+    <a href="korelace.html">Korelace</a>
+  </div>
+</nav>`;
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="../js/data.js"></script>
+<script>
+const TEAL = '#1A6B5C', RED = '#C0392B', BLUE = '#2E6DA4';
+let chart;
+
+function buildChart(mode) {
+  if (chart) chart.destroy();
+
+  const bad = mode === 'bad';
+  const startIdx = bad ? DATA.tempYears.indexOf(2010) : 0;
+  const yrs  = DATA.tempYears.slice(startIdx);
+  const vals = DATA.tempVals.slice(startIdx);
+  const cols = vals.map(v => v >= 0 ? RED+'cc' : BLUE+'cc');
+
+  chart = new Chart(document.getElementById('chart'), {
+    type: 'bar',
+    data: {
+      labels: yrs,
+      datasets: [{
+        data: vals,
+        backgroundColor: cols,
+        borderColor: cols.map(c => c.slice(0,7)),
+        borderWidth: 0,
+        borderRadius: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const v = ctx.parsed.y;
+              return `${v >= 0 ? '+' : ''}${v.toFixed(3)} °C oproti průměru 1951–1980`;
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          min: bad ? 0.50 : -0.65,
+          max: 1.25,
+          ticks: { color: '#8896A4', callback: v => v.toFixed(1) + ' °C' },
+          grid: { color: 'rgba(0,0,0,0.06)' },
+          title: { display: true, text: 'Teplotní anomálie (°C)', color: '#8896A4', font: { size: 11 } }
+        },
+        x: {
+          ticks: { color: '#8896A4', maxTicksLimit: bad ? 14 : 13, maxRotation: 45 },
+          grid: { display: false }
+        }
+      }
+    }
+  });
+}
+
+function setMode(mode) {
+  document.getElementById('btnBad').className  = 'sw-btn bad'  + (mode === 'bad'  ? ' active' : '');
+  document.getElementById('btnGood').className = 'sw-btn good' + (mode === 'good' ? ' active' : '');
+
+  const bad = mode === 'bad';
+  const v = document.getElementById('verdict');
+  v.className = 'verdict ' + (bad ? 'bad' : 'good');
+  v.innerHTML = bad
+    ? '<span>⚠</span> Osa Y začíná na 0,5 °C — zobrazeno jen posledních 14 let'
+    : '<span>✓</span> Osa Y od –0,65 °C — celý kontext 1960–2023 (64 let)';
+
+  document.getElementById('caption').textContent = bad
+    ? 'Zobrazeno: 2010–2023 · Osa Y: 0,50–1,30 °C · Vizuálně dramatické výkyvy jsou výsledkem oříznuté osy.'
+    : 'Zobrazeno: 1960–2023 · Osa Y: –0,65–1,25 °C · Stejná data, plný kontext — záporné anomálie ze 60.–80. let jsou viditelné.';
+
+  buildChart(mode);
+}
+
+buildChart('bad');
+</script>
+</body>
+</html>

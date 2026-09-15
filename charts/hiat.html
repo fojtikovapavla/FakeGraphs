@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selektivní výběr dat — Věda a manipulace</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="nav"></div>
+
+<header class="chart-page-header">
+  <div class="chart-page-header-inner">
+    <a class="chart-page-back" href="../index.html">← Zpět na přehled</a>
+    <p class="chart-page-kicker">Technika 02 · Selektivní výběr časového okna</p>
+    <h1>„Hiátus v oteplování" — reálný argument, reálná data</h1>
+  </div>
+</header>
+
+<div class="container-wide">
+<div class="chart-split">
+
+  <!-- ── LEVÁ: GRAF ──────────────────────────────────────── -->
+  <div class="chart-main">
+
+    <div class="switcher">
+      <button class="sw-btn bad active" id="btnBad" onclick="setMode('bad')">Manipulovaná verze</button>
+      <button class="sw-btn good" id="btnGood" onclick="setMode('good')">Správná verze</button>
+    </div>
+
+    <div class="verdict bad" id="verdict">
+      <span>⚠</span> Výběr 1998–2012 začínající El Niño — „oteplování se zastavilo!"
+    </div>
+
+    <div class="legend-row" id="legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:#C0392B"></div>Teplota (°C)</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#888;height:3px;border-radius:1px;width:18px"></div>Lineární trend</div>
+    </div>
+
+    <div class="canvas-wrap" style="height:320px">
+      <canvas id="chart" role="img" aria-label="Čárový graf selektivního výběru teplotních dat — hiátus 1998-2012"></canvas>
+    </div>
+    <p class="canvas-caption" id="caption">
+      Zobrazeno: 1998–2012 · Trendová linie: +0,12 °C / 10 let · Zdánlivě slabý trend — volba výchozího bodu El Niño 1998 je klíčová.
+    </p>
+
+    <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--line)">
+      <p style="font-size:12px;color:var(--ink-mute);line-height:1.7">
+        <strong style="color:var(--ink)">Zdroj dat:</strong>
+        GCAG / NOAA ·
+        <a href="https://github.com/datasets/global-temp" target="_blank" rel="noopener">github.com/datasets/global-temp</a> ·
+        Licence CC0
+      </p>
+    </div>
+  </div>
+
+  <!-- ── PRAVÁ: VYSVĚTLENÍ ──────────────────────────────── -->
+  <aside class="chart-sidebar">
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Co jsou to data</div>
+      <p class="sidebar-text">
+        Stejná datová sada jako v technice 01 — roční globální teplotní anomálie GCAG/NOAA 1960–2023.
+        Tentokrát manipulace nespočívá v ose, ale ve výběru časového rozsahu.
+      </p>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Historický kontext manipulace</div>
+      <p class="sidebar-text">
+        Argument <strong>„global warming hiatus"</strong> (pauza v oteplování) byl reálně používán skeptiky
+        klimatické vědy přibližně v letech 2008–2015. Spočíval v tom, že rok 1998 byl mimořádně teplý
+        kvůli silné události El&nbsp;Niño — a při výběru tohoto roku jako výchozího bodu krátkodobý
+        lineární trend skutečně vypadá slabě.
+      </p>
+      <p class="sidebar-text" style="margin-top:.75rem">
+        V roce 2015–2016 přišlo nové El&nbsp;Niño a argument spontánně zkolaboval,
+        protože teplotní záznamy byly překonány.
+      </p>
+    </div>
+
+    <div class="info-box warn">
+      <p>
+        <strong>Klíčový princip:</strong> výběr počátečního bodu na lokálním maximu (El&nbsp;Niño 1998)
+        a koncového bodu na lokálním minimu (La&nbsp;Niña 2012) vytváří záporný nebo nulový trend
+        i v dlouhodobě rostoucím souboru. Statistikové to nazývají <em>cherry-picking</em>.
+      </p>
+    </div>
+
+    <div class="sidebar-section" style="margin-top:1.5rem">
+      <div class="sidebar-label">Na co se dívat</div>
+      <p class="sidebar-text">Přepněte na <strong>Správnou verzi</strong>:</p>
+      <ul style="font-family:var(--f-text);font-size:.875rem;line-height:1.8;color:var(--ink-soft);padding-left:1.25rem;margin-top:.5rem">
+        <li>Červeně zvýrazněné období „hiátu" v kontextu 64 let</li>
+        <li>Dlouhodobý trend 1960–2023: <strong>+0,19 °C / 10 let</strong></li>
+        <li>„Hiátus" je zřetelně jen přirozený výkyv, nikoli zastavení trendu</li>
+      </ul>
+    </div>
+
+    <div class="info-box" style="margin-top:1rem">
+      <p>
+        <strong>Obecné pravidlo:</strong> časové okno by mělo být odůvodněno vědecky,
+        ne výběrem statisticky výhodného počátku a konce. Vždy se ptejte: „Proč právě tato léta?"
+      </p>
+    </div>
+
+  </aside>
+</div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>
+      Data: <a href="https://github.com/datasets/global-temp" target="_blank" rel="noopener">GCAG / NOAA</a> (CC0) ·
+      Přírodovědecká fakulta JU · Materiál pro vzdělávací účely · 2026
+    </p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('nav').innerHTML = `
+<nav class="site-nav">
+  <span class="logo">Věda &amp; <span>Manipulace</span></span>
+  <div class="nav-links">
+    <a href="../index.html">Přehled</a>
+    <a href="osa-y.html">Osa Y</a>
+    <a href="hiat.html" class="active">Selektivní výběr</a>
+    <a href="kontext.html">Chybějící kontext</a>
+    <a href="korelace.html">Korelace</a>
+  </div>
+</nav>`;
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="../js/data.js"></script>
+<script>
+const RED = '#C0392B', TEAL = '#1A6B5C', BLUE = '#2E6DA4';
+let chart;
+
+function buildChart(mode) {
+  if (chart) chart.destroy();
+  const bad = mode === 'bad';
+
+  const i98 = DATA.tempYears.indexOf(1998);
+  const i12 = DATA.tempYears.indexOf(2012);
+
+  const yrs  = bad ? DATA.tempYears.slice(i98, i12+1) : DATA.tempYears;
+  const vals = bad ? DATA.tempVals.slice(i98, i12+1)  : DATA.tempVals;
+  const reg  = DATA.linreg(yrs, vals);
+
+  const datasets = [
+    {
+      label: 'Teplota (°C)',
+      data: vals,
+      borderColor: bad ? RED : TEAL,
+      backgroundColor: bad ? 'rgba(192,57,43,0.10)' : 'rgba(26,107,92,0.10)',
+      fill: true, tension: 0.3, borderWidth: 2,
+      pointRadius: bad ? 4 : 2.5,
+      pointBackgroundColor: bad ? RED : TEAL,
+      pointBorderColor: '#fff', pointBorderWidth: 1
+    },
+    {
+      label: 'Lineární trend',
+      data: reg.line,
+      borderColor: 'rgba(100,100,100,0.65)',
+      borderDash: [6,4], borderWidth: 1.5,
+      pointRadius: 0, fill: false
+    }
+  ];
+
+  // V "správné" verzi přidáme zvýraznění hiátu jako area dataset
+  if (!bad) {
+    const hiatus = DATA.tempYears.map((y, i) =>
+      (y >= 1998 && y <= 2012) ? DATA.tempVals[i] : null
+    );
+    datasets.splice(1, 0, {
+      label: '„Hiátus" 1998–2012',
+      data: hiatus,
+      backgroundColor: 'rgba(192,57,43,0.18)',
+      borderColor: 'transparent',
+      fill: true, tension: 0.3,
+      pointRadius: 0, borderWidth: 0,
+      spanGaps: false
+    });
+  }
+
+  chart = new Chart(document.getElementById('chart'), {
+    type: 'line',
+    data: { labels: yrs, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          filter: item => item.datasetIndex === 0,
+          callbacks: {
+            label: ctx => {
+              const v = ctx.parsed.y;
+              return `${v >= 0 ? '+' : ''}${v.toFixed(3)} °C`;
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          ticks: { color: '#8896A4', callback: v => (v >= 0 ? '+' : '') + v.toFixed(2) + ' °C' },
+          grid: { color: 'rgba(0,0,0,0.06)' },
+          title: { display: true, text: 'Teplotní anomálie (°C)', color: '#8896A4', font: { size: 11 } }
+        },
+        x: {
+          ticks: { color: '#8896A4', maxTicksLimit: bad ? 15 : 13, maxRotation: 45 },
+          grid: { display: false }
+        }
+      }
+    }
+  });
+}
+
+function setMode(mode) {
+  document.getElementById('btnBad').className  = 'sw-btn bad'  + (mode === 'bad'  ? ' active' : '');
+  document.getElementById('btnGood').className = 'sw-btn good' + (mode === 'good' ? ' active' : '');
+
+  const bad = mode === 'bad';
+  const v = document.getElementById('verdict');
+  v.className = 'verdict ' + (bad ? 'bad' : 'good');
+  v.innerHTML = bad
+    ? '<span>⚠</span> Výběr 1998–2012 začínající El&nbsp;Niño — „oteplování se zastavilo!"'
+    : '<span>✓</span> Kontext 1960–2023 — „hiátus" je zvýrazněn, trend +0,19 °C / 10 let pokračuje';
+
+  const reg = bad
+    ? DATA.linreg(DATA.tempYears.slice(DATA.tempYears.indexOf(1998), DATA.tempYears.indexOf(2012)+1),
+                  DATA.tempVals.slice(DATA.tempYears.indexOf(1998), DATA.tempYears.indexOf(2012)+1))
+    : DATA.linreg(DATA.tempYears, DATA.tempVals);
+
+  document.getElementById('caption').textContent = bad
+    ? `Zobrazeno: 1998–2012 · Trend: ${reg.slope >= 0 ? '+' : ''}${(reg.slope*10).toFixed(3)} °C / 10 let · El Niño 1998 jako záměrně zvolený výchozí bod.`
+    : `Zobrazeno: 1960–2023 · Dlouhodobý trend: +${(reg.slope*10).toFixed(3)} °C / 10 let · Červená plocha = „hiátus" v kontextu celého souboru.`;
+
+  buildChart(mode);
+}
+
+buildChart('bad');
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Věda a manipulace — jak zkreslit graf</title>
+  <meta name="description" content="Interaktivní průvodce vizuální manipulací s vědeckými daty. Reálná data, reálné techniky zkreslení.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="nav"></div>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-kicker">Přírodovědecká fakulta JU · České Budějovice</p>
+    <h1>Jak zkreslit vědecký graf — bez jediné lži</h1>
+    <p class="hero-lead">
+      Stejná čísla lze prezentovat jako dramatickou katastrofu nebo jako zanedbatelný šum.
+      Všechny grafy níže vycházejí z veřejně ověřitelných dat.
+      Manipulace vzniká volbou osy, výběrem časového okna nebo vynecháním kontextu.
+    </p>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-val">6×</div>
+        <div class="stat-lbl">rychleji se šíří falešná zpráva než pravda<br>(MIT, 2018)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">1 : 400</div>
+        <div class="stat-lbl">poměr sdílení dezinformace vs. vědecké korekce</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">4</div>
+        <div class="stat-lbl">techniky vizuální manipulace na těchto stránkách</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── ÚVOD ─────────────────────────────────────────────── -->
+<main>
+<div class="container">
+  <p class="section-heading">O čem tyto stránky jsou</p>
+
+  <p style="font-family:var(--f-text);font-size:1rem;line-height:1.8;color:var(--ink-soft);margin-bottom:1rem;max-width:660px">
+    Graf je vědecký nástroj, ale také komunikační médium. Výběr počátku osy, rozsahu dat nebo způsobu normalizace
+    dramaticky mění, co čtenář vidí — i když čísla zůstanou naprosto přesná.
+  </p>
+  <p style="font-family:var(--f-text);font-size:1rem;line-height:1.8;color:var(--ink-soft);margin-bottom:.5rem;max-width:660px">
+    Čtyři interaktivní stránky níže ukazují konkrétní techniky na reálných datech:
+    globální teplotní anomálie (GCAG&nbsp;/&nbsp;NOAA) a světové emise CO₂
+    (OWID&nbsp;/&nbsp;Global Carbon Project). Každá stránka obsahuje přepínač
+    <strong style="color:var(--red)">manipulovaná verze</strong>
+    &nbsp;↔&nbsp;
+    <strong style="color:var(--teal)">správná verze</strong>
+    se stejnými daty.
+  </p>
+
+  <p class="section-heading" style="margin-top:2rem">Čtyři techniky manipulace</p>
+</div>
+
+<!-- ── KARTY GRAFŮ ───────────────────────────────────────── -->
+<div class="container">
+  <div class="chart-grid">
+
+    <!-- 1 -->
+    <div class="chart-card">
+      <div class="chart-card-stripe red"></div>
+      <div class="chart-card-body">
+        <div class="chart-card-num">Technika 01</div>
+        <div class="chart-card-title">Oříznutá osa Y</div>
+        <div class="chart-card-desc">
+          Osa Y nezačíná od nuly. Malá změna pak vizuálně vypadá jako dramatický skok.
+          Data: globální teplotní anomálie 1960–2023 (NOAA).
+        </div>
+        <div class="chart-card-tags">
+          <span class="tag tag-red">Nejčastější technika</span>
+          <span class="tag tag-teal">Teploty NOAA</span>
+        </div>
+      </div>
+      <div class="chart-card-footer">
+        <span class="chart-card-source">GCAG / NOAA · CC0</span>
+        <a class="btn-chart" href="charts/osa-y.html">Zobrazit graf</a>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="chart-card">
+      <div class="chart-card-stripe red"></div>
+      <div class="chart-card-body">
+        <div class="chart-card-num">Technika 02</div>
+        <div class="chart-card-title">Selektivní výběr časového okna</div>
+        <div class="chart-card-desc">
+          Výběr počátečního a koncového roku vytváří zdánlivý trend, který v delším
+          kontextu neexistuje. Příklad: „hiátus v oteplování" 1998–2012.
+        </div>
+        <div class="chart-card-tags">
+          <span class="tag tag-red">Reálně použitý argument</span>
+          <span class="tag tag-teal">Teploty NOAA</span>
+        </div>
+      </div>
+      <div class="chart-card-footer">
+        <span class="chart-card-source">GCAG / NOAA · CC0</span>
+        <a class="btn-chart" href="charts/hiat.html">Zobrazit graf</a>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="chart-card">
+      <div class="chart-card-stripe red"></div>
+      <div class="chart-card-body">
+        <div class="chart-card-num">Technika 03</div>
+        <div class="chart-card-title">Chybějící kontext — absolutní vs. relativní</div>
+        <div class="chart-card-desc">
+          Absolutní číslo bez kontextu (populace, HDP, plocha) vytváří zavádějící obraz.
+          Data: světové emise CO₂ celkové vs. na obyvatele (OWID).
+        </div>
+        <div class="chart-card-tags">
+          <span class="tag tag-red">Chybí normalizace</span>
+          <span class="tag tag-teal">CO₂ OWID/GCP</span>
+        </div>
+      </div>
+      <div class="chart-card-footer">
+        <span class="chart-card-source">OWID / Global Carbon Project · CC BY</span>
+        <a class="btn-chart" href="charts/kontext.html">Zobrazit graf</a>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="chart-card">
+      <div class="chart-card-stripe teal"></div>
+      <div class="chart-card-body">
+        <div class="chart-card-num">Technika 04</div>
+        <div class="chart-card-title">Korelace ≠ kauzalita</div>
+        <div class="chart-card-desc">
+          Silná korelace (r = 0,94) mezi CO₂ a teplotou je vizuálně přesvědčivá.
+          Dezinformátoři tento argument obracejí oběma směry. Kauzalitu prokazují jiné metody.
+        </div>
+        <div class="chart-card-tags">
+          <span class="tag tag-red">Logická chyba</span>
+          <span class="tag tag-teal">CO₂ + teploty</span>
+        </div>
+      </div>
+      <div class="chart-card-footer">
+        <span class="chart-card-source">GCAG / NOAA + OWID / GCP · CC0 / CC BY</span>
+        <a class="btn-chart" href="charts/korelace.html">Zobrazit graf</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── OBECNÉ ZÁSADY ──────────────────────────────────────── -->
+<div class="container">
+  <p class="section-heading">Otázky, které si klást u každého grafu</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:3rem">
+
+    <div class="info-box">
+      <p><strong>Kde začíná osa Y?</strong> Pokud nezačíná od nuly (nebo od přirozené nuly dané domény), zjistěte proč. Oříznutá osa dramatizuje malé změny.</p>
+    </div>
+    <div class="info-box">
+      <p><strong>Jaké je časové okno?</strong> Krátký výběr může ukazovat trend opačný k dlouhodobému vývoji. Vždy se ptejte, co je mimo záběr.</p>
+    </div>
+    <div class="info-box">
+      <p><strong>Je číslo absolutní nebo relativní?</strong> Celkové emise rostou, ale emise na obyvatele jsou jiný příběh. Normalizace mění závěr.</p>
+    </div>
+    <div class="info-box">
+      <p><strong>Korelace, nebo příčina?</strong> Vizuálně přesvědčivá shoda dvou křivek nic neříká o mechanismu. Kauzalitu prokazují fyzikální modely, ne grafy.</p>
+    </div>
+    <div class="info-box warn">
+      <p><strong>Kdo data zpracoval?</strong> Surová data jsou jedno; volby při zpracování (škálování, výběr referenčního období, normalizace) jsou druhé.</p>
+    </div>
+    <div class="info-box warn">
+      <p><strong>Jsou chybové úsečky?</strong> Graf bez intervalů spolehlivosti nebo error bars skrývá nejistotu měření — v analytické chemii je jejich uvádění povinné.</p>
+    </div>
+  </div>
+</div>
+</main>
+
+<!-- ── PATIČKA ────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <p>
+      Zdroje dat: <a href="https://github.com/datasets/global-temp" target="_blank" rel="noopener">GCAG / NOAA</a> (CC0) ·
+      <a href="https://github.com/owid/co2-data" target="_blank" rel="noopener">OWID / Global Carbon Project</a> (CC BY)<br>
+      Přírodovědecká fakulta Jihočeské univerzity v Českých Budějovicích · Materiál pro vzdělávací účely · 2026
+    </p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('nav').innerHTML = `
+<nav class="site-nav">
+  <span class="logo">Věda &amp; <span>Manipulace</span></span>
+  <div class="nav-links">
+    <a href="index.html" class="active">Přehled</a>
+    <a href="charts/osa-y.html">Osa Y</a>
+    <a href="charts/hiat.html">Selektivní výběr</a>
+    <a href="charts/kontext.html">Chybějící kontext</a>
+    <a href="charts/korelace.html">Korelace</a>
+  </div>
+</nav>`;
+</script>
+</body>
+</html>

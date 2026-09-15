@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chybějící kontext — Věda a manipulace</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="nav"></div>
+
+<header class="chart-page-header">
+  <div class="chart-page-header-inner">
+    <a class="chart-page-back" href="../index.html">← Zpět na přehled</a>
+    <p class="chart-page-kicker">Technika 03 · Chybějící kontext — absolutní vs. relativní</p>
+    <h1>CO₂ emise: celkové číslo bez kontextu populace</h1>
+  </div>
+</header>
+
+<div class="container-wide">
+<div class="chart-split">
+
+  <!-- ── LEVÁ: GRAF ──────────────────────────────────────── -->
+  <div class="chart-main">
+
+    <div class="switcher">
+      <button class="sw-btn bad active" id="btnBad" onclick="setMode('bad')">Manipulovaná verze</button>
+      <button class="sw-btn good" id="btnGood" onclick="setMode('good')">Správná verze</button>
+    </div>
+
+    <div class="verdict bad" id="verdict">
+      <span>⚠</span> Celkové emise: dramatický nárůst 4× — ale kde je kontext populace?
+    </div>
+
+    <div class="legend-row" id="legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:#C0392B"></div>CO₂ celkové (Gt/rok)</div>
+    </div>
+
+    <div class="canvas-wrap" style="height:320px">
+      <canvas id="chart" role="img" aria-label="Graf světových emisí CO2 — celkové vs. na obyvatele"></canvas>
+    </div>
+    <p class="canvas-caption" id="caption">
+      Světové emise CO₂ celkové 1960–2023 · Zdroj: OWID / Global Carbon Project · Licence CC BY
+    </p>
+
+    <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--line)">
+      <p style="font-size:12px;color:var(--ink-mute);line-height:1.7">
+        <strong style="color:var(--ink)">Zdroj dat:</strong>
+        OWID / Global Carbon Project ·
+        <a href="https://github.com/owid/co2-data" target="_blank" rel="noopener">github.com/owid/co2-data</a> ·
+        Licence CC BY · Data za roky 1960–2023.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── PRAVÁ: VYSVĚTLENÍ ──────────────────────────────── -->
+  <aside class="chart-sidebar">
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Co jsou to data</div>
+      <p class="sidebar-text">
+        <strong>Světové emise CO₂</strong> pocházejí z databáze Our World in Data (OWID) kompilované
+        na základě dat Global Carbon Project — mezinárodního výzkumného konsorcia.
+        Data zahrnují spalování fosilních paliv, průmyslové procesy a změny využití půdy.
+      </p>
+      <p class="sidebar-text" style="margin-top:.75rem">
+        Celkové emise jsou v gigaton CO₂ za rok (Gt/rok). Emise na obyvatele jsou v tunách CO₂
+        na osobu za rok (t/os/rok). Jde o zcela odlišné příběhy ve stejných datech.
+      </p>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Technika manipulace</div>
+      <p class="sidebar-text">
+        <strong>Chybějící normalizace:</strong> celkové emise vzrostly z 9,4 Gt (1960) na 38 Gt (2023)
+        — nárůst o 305 %. Toto číslo je technicky správné.
+      </p>
+      <p class="sidebar-text" style="margin-top:.75rem">
+        Ale světová populace vzrostla ze 3 na 8 miliard (+167 %). Emise na obyvatele vzrostly
+        z 3,1 na 4,7 t/os — nárůst o pouhých 51 %. Pokud od roku 1980 normalizujeme na obyvatele,
+        emise jsou téměř stabilní.
+      </p>
+      <p class="sidebar-text" style="margin-top:.75rem">
+        Obě interpretace jsou vědecky legitimní a relevantní pro různé otázky.
+        <strong>Záměr autora grafu</strong> — nikoli data — určuje, který příběh bude sdělen.
+      </p>
+    </div>
+
+    <div class="info-box warn">
+      <p>
+        <strong>Pozor:</strong> „správná verze" v tomto případě neznamená, že emise jsou přijatelné.
+        Znamená pouze, že k pochopení dat je nutný populační kontext.
+        Pohled na absolutní emise i emise na obyvatele je vědecky legitimní.
+      </p>
+    </div>
+
+    <div class="sidebar-section" style="margin-top:1.5rem">
+      <div class="sidebar-label">Na co se dívat</div>
+      <p class="sidebar-text">Přepněte na <strong>Správnou verzi</strong>:</p>
+      <ul style="font-family:var(--f-text);font-size:.875rem;line-height:1.8;color:var(--ink-soft);padding-left:1.25rem;margin-top:.5rem">
+        <li>Červená linie (levá osa): celkové emise rostou strmě</li>
+        <li>Zelená přerušovaná (pravá osa): emise / obyvatele od 80. let téměř stagnují</li>
+        <li>Tento kontrast je vědecky zásadní pro diskusi o odpovědnosti za emise</li>
+      </ul>
+    </div>
+
+    <div class="info-box" style="margin-top:1rem">
+      <p>
+        <strong>Analytický princip:</strong> v analytické chemii se výsledky vždy uvádějí
+        s jednotkami a vztažnou veličinou (mg/L, mg/kg, µg/m³). Číslo bez vztažné veličiny
+        nemá fyzikální smysl. Totéž platí pro statistiku emisí.
+      </p>
+    </div>
+
+  </aside>
+</div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>
+      Data: <a href="https://github.com/owid/co2-data" target="_blank" rel="noopener">OWID / Global Carbon Project</a> (CC BY) ·
+      Přírodovědecká fakulta JU · Materiál pro vzdělávací účely · 2026
+    </p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('nav').innerHTML = `
+<nav class="site-nav">
+  <span class="logo">Věda &amp; <span>Manipulace</span></span>
+  <div class="nav-links">
+    <a href="../index.html">Přehled</a>
+    <a href="osa-y.html">Osa Y</a>
+    <a href="hiat.html">Selektivní výběr</a>
+    <a href="kontext.html" class="active">Chybějící kontext</a>
+    <a href="korelace.html">Korelace</a>
+  </div>
+</nav>`;
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="../js/data.js"></script>
+<script>
+const RED = '#C0392B', GREEN = '#1A6B5C';
+let chart;
+
+function buildChart(mode) {
+  if (chart) chart.destroy();
+  const bad = mode === 'bad';
+
+  const leg = document.getElementById('legend');
+  if (bad) {
+    leg.innerHTML = `<div class="legend-item"><div class="legend-swatch" style="background:${RED}"></div>CO₂ celkové (Gt/rok)</div>`;
+  } else {
+    leg.innerHTML = `
+      <div class="legend-item"><div class="legend-swatch" style="background:${RED}"></div>CO₂ celkové, levá osa (Gt/rok)</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:${GREEN};border-style:dashed;border-width:2px;background:transparent;border-color:${GREEN}"></div>CO₂ / obyvatele, pravá osa (t/os/rok)</div>`;
+  }
+
+  const datasets = bad
+    ? [{
+        label: 'CO₂ celkové (Gt/rok)',
+        data: DATA.co2Total,
+        borderColor: RED, backgroundColor: 'rgba(192,57,43,0.12)',
+        fill: true, tension: 0.4, borderWidth: 2.5, pointRadius: 0,
+        yAxisID: 'y'
+      }]
+    : [
+        {
+          label: 'CO₂ celkové (Gt/rok)',
+          data: DATA.co2Total,
+          borderColor: RED, backgroundColor: 'rgba(192,57,43,0.08)',
+          fill: true, tension: 0.4, borderWidth: 2.5, pointRadius: 0,
+          yAxisID: 'y'
+        },
+        {
+          label: 'CO₂ / obyvatele (t/os/rok)',
+          data: DATA.co2PerCap,
+          borderColor: GREEN, backgroundColor: 'transparent',
+          borderDash: [7,4], tension: 0.4, borderWidth: 2,
+          pointRadius: 0, fill: false,
+          yAxisID: 'y1'
+        }
+      ];
+
+  const scales = {
+    x: {
+      ticks: { color: '#8896A4', maxTicksLimit: 13, maxRotation: 45 },
+      grid: { display: false }
+    },
+    y: {
+      ticks: { color: RED, callback: v => v.toFixed(0) + ' Gt' },
+      grid: { color: 'rgba(0,0,0,0.06)' },
+      title: { display: true, text: 'CO₂ celkové (Gt/rok)', color: RED, font: { size: 11 } }
+    }
+  };
+
+  if (!bad) {
+    scales.y1 = {
+      position: 'right',
+      ticks: { color: GREEN, callback: v => v.toFixed(1) + ' t/os' },
+      grid: { display: false },
+      title: { display: true, text: 'CO₂ / obyvatele (t/os/rok)', color: GREEN, font: { size: 11 } }
+    };
+  }
+
+  chart = new Chart(document.getElementById('chart'), {
+    type: 'line',
+    data: { labels: DATA.co2Years, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          mode: 'index', intersect: false,
+          callbacks: {
+            label: ctx => ctx.datasetIndex === 0
+              ? `Celkové: ${ctx.parsed.y.toFixed(1)} Gt/rok`
+              : `Na obyvatele: ${ctx.parsed.y.toFixed(2)} t/os/rok`
+          }
+        }
+      },
+      scales
+    }
+  });
+}
+
+function setMode(mode) {
+  document.getElementById('btnBad').className  = 'sw-btn bad'  + (mode === 'bad'  ? ' active' : '');
+  document.getElementById('btnGood').className = 'sw-btn good' + (mode === 'good' ? ' active' : '');
+
+  const bad = mode === 'bad';
+  const v = document.getElementById('verdict');
+  v.className = 'verdict ' + (bad ? 'bad' : 'good');
+  v.innerHTML = bad
+    ? '<span>⚠</span> Celkové emise: dramatický nárůst 4× — ale kde je kontext populace?'
+    : '<span>✓</span> Celkové + na obyvatele: od 80. let emise / osobu stagnují, populace +3 mld.';
+
+  document.getElementById('caption').textContent = bad
+    ? 'Světové emise CO₂ celkové 1960–2023 · Nárůst z 9,4 na 38 Gt = +305 % · Zdroj: OWID / Global Carbon Project · CC BY'
+    : 'Světové emise CO₂ 1960–2023 · Celkové vs. na obyvatele na dvou osách · Stejná data, zcela jiný příběh · OWID / GCP · CC BY';
+
+  buildChart(mode);
+}
+
+buildChart('bad');
+</script>
+</body>
+</html>
