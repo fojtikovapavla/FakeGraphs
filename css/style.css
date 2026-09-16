@@ -95,7 +95,7 @@ a:hover { text-decoration: underline; }
 }
 .stat { flex: 1; padding: 1.25rem 1.5rem; border-right: 1px solid rgba(255,255,255,.12); border-bottom: 1px solid rgba(255,255,255,.12); }
 .stat-val { font-size: 2rem; font-weight: 600; color: #5FC3B0; line-height: 1; margin-bottom: .3rem; }
-.stat-lbl { font-size: 11px; color: rgba(255,255,255,.5); line-height: 1.4; }
+.stat-lbl { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.4; }
 
 /* ── Graf-karty (index) ───────────────────────────────── */
 .section-heading {
